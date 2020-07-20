@@ -43,7 +43,7 @@ function show_position(p)
         longitude : 98.6612 
     };
      var users = {
-        latitude : p.coords.latitude.toFixed(5),
+        latitude : p.coords.latitude.toFixed(4),
         longitude :  p.coords.longitude.toFixed(4) 
     };
     if(places.latitude > users.latitude || users.latitude  > places.latitude ){
@@ -56,7 +56,7 @@ function show_position(p)
     
 
  
-	document.getElementById('platitude').innerHTML= p.coords.latitude.toFixed(5);
+	document.getElementById('platitude').innerHTML= p.coords.latitude.toFixed(4);
 
 	document.getElementById('plongitude').innerHTML= p.coords.longitude.toFixed(4);
 
