@@ -1,658 +1,74 @@
-<html>
-<head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Cover Template · Bootstrap</title>
 
-<title>E-Absensi</title>
-<link rel="icon"  href="https://absenku.com/profesional/wp-content/uploads/2018/08/hp-slide2new.png">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/cover/">
 
-<script>
-function initialize_map()
-{
-    var myOptions = {
-	      zoom: 100,
-	      mapTypeControl: true,
-	      mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
-	      navigationControl: true,
-	      navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
-	      mapTypeId: google.maps.MapTypeId.ROADMAP      
-	    }	
-	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-}
-function initialize()
-{
-	if(geo_position_js.init())
-	{
-	
-		geo_position_js.getCurrentPosition(show_position,function(){document.getElementById('current').innerHTML="Couldn't get location"},{enableHighAccuracy:true});
-	}
-	else
-	{
-		document.getElementById('current').innerHTML="Functionality not available";
-	}
-}
+    <!-- Bootstrap core CSS -->
+<link href="/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-function show_position(p)
-{
-    var places = {
-        latitude : 3.58155,
-        longitude : 98.6612 
-    };
-     var users = {
-        latitude : p.coords.latitude.toFixed(4),
-        longitude :  p.coords.longitude.toFixed(4) 
-    };
-    if(places.latitude > users.latitude || users.latitude  > places.latitude ){
-        document.getElementById('alert-box').style.display = "block";
-        document.getElementById('status').value = 'Absen';
-    }
-    else{
-          document.getElementById('status').value = 'Hadir';
-    }
-    
-
- 
-	document.getElementById('platitude').innerHTML= p.coords.latitude.toFixed(4);
-
-	document.getElementById('plongitude').innerHTML= p.coords.longitude.toFixed(4);
-
-	var pos=new google.maps.LatLng(p.coords.latitude,p.coords.longitude);
-	map.setCenter(pos);
-	map.setZoom(15);
-
-	var infowindow = new google.maps.InfoWindow({
-	    content: "<strong>yes</strong>"
-	});
-
-	var marker = new google.maps.Marker({
-	    position: pos,
-	    map: map,
-	    title:"You are here"
-	});
-
-	google.maps.event.addListener(marker, 'click', function() {
-	  infowindow.open(map,marker);
-	});
-	
-}
-window.onload = function() {
-  var startPos;
-  var geoSuccess = function(position) {
-    startPos = position;
-    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
-  };
-  navigator.geolocation.getCurrentPosition(geoSuccess);
-};
-</script>
-
-<style>
-	body { margin:0px; padding:0px;background:url('https://sinaragung.co.id/wp-content/uploads/2016/10/maxresdefault.jpg') repeat;font-family: Helvetica;font-size:11pt;padding:0px;margin:0px}
-	#title {background-color:lightblue;padding:5px;}
-	#current {font-size:10pt;padding:5px;}
-	.map-container-6{
-overflow:hidden;
-padding-bottom:56.25%;
-position:relative;
-height:0;
-}
-.map-container-6 iframe{
-left:0;
-top:0;
-height:100%;
-width:100%;
-position:absolute;
-}	
-footer{
-
-}
-</style>
-</head>
-<body onload="initialize_map();initialize()">
-
-		<div class="container-fluid" style="margin:0px; padding:0px; ">
-		<div class="container" style="background-color: white; padding:0px;">
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#"><img src="https://absenku.com/profesional/wp-content/uploads/2018/08/hp-slide2new.png" width="60" height="60">E-Absensi</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About as</a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#">Contact us</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-         
-
-  </div>
-</nav>
-	
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+<meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#563d7c">
 
 
-	<!--Section: Contact v.1-->
-	<div class="card">
-<section class="section pb-5" style="padding: 25px;">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
- <div class="jumbotron">
-  <h1 class="display-4">Sistem E-Absensi</h1>
-  <p class="lead">Pengelola Sistem E-Absensi Absensi dengan ini diinformasikan bahwa  ini Lagi tahap pengembangan</p>
-  <hr class="my-4">
-  <p>Kepada anda yg ingin absen pastikan jarak antar titik kordinat harus di lokasi sekolah</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-</div>
-
- 
-  <div class="row">
-
-    <!--Grid column-->
-    <div class="col-lg-5 mb-4">
-
-      <!--Form with header-->
-      <div class="card">
-
-        <div class="card-body">
-          <!--Header-->
-          <div class="form-header blue accent-1">
-            <h3><i class="fas fa-calendar-check"></i>&nbsp;Check in absen</h3>
-          </div>
-          
-          <div style="display: none;" id='alert-box'class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Pemberitahuan!</strong> <p id="palert">jarak terlalu jauh status kamu absen, kamu harus berada didalam sekolah untuk hadir</p>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-    
-
-          <!--Body-->
-          <form action="" method="post"> 
-          <div class="md-form">
-          	<i class="fas fa-user prefix grey-text"></i>
-          <label for="nip" class="control-label"><span class="text-danger">*</span>Masukkan NIS</label>
-						<div class="form-group">
-							<input type="text" name="nip" placeholder="Nomor induk siswa" class="form-control" id="nip" required/>
-							<span class="text-danger"></span>
-						</div>
-          </div>
-            <div class="md-form">
-          	<i class="fas fa-user prefix grey-text"></i>
-          <label for="nip" class="control-label"><span class="text-danger">*</span>Masukkan Nama lengkap</label>
-						<div class="form-group">
-							<input type="text" name="nip" placeholder="Nama lengkap anda" class="form-control" id="nip"required />
-							<span class="text-danger"></span>
-						</div>
-          </div>
-
-          <div class="md-form">
-            <i class="fas fa-envelope prefix grey-text"></i>
-           <label for="status" class="control-label"><span class="text-danger">*</span>Status</label>
-						<div class="form-group">
-							<input  id="status" type="text" name="status" value="" class="form-control" id="status"required disabled="" />
-						
-						
-						</div>
-            
-          </div>
-
-      
-           <div class="md-form">
-            <i class="fas fa-pencil-alt prefix grey-text"></i>
-          <label for="tgl_absensi" class="control-label"><span class="text-danger">*</span>Tgl Absensi</label>
-						<div class="form-group">
-							<input   type="date"  name="tgl_absensi" class="form-control" id="tgl_absensi" required>
-						
-						</div>
-            
-          </div>
-
-          <div class="text-center">
-            <button id="capture" type="submit" class="btn btn-success" style="width: 100%;" value="Kirim">Kirim
-</button>          </div>
-
-        </div>
-
-      </div>
-  </form>
-      <!--Form with header-->
-
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">Cover</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link active" href="#">Home</a>
+        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="#">Contact</a>
+      </nav>
     </div>
-    <!--Grid column-->
+  </header>
 
-    <!--Grid column-->
-    <div class="col-lg-7" style="border: 1px solid #dedede; border-radius: 4px; padding: 5px;">
-<div id="title" style="background-color: dodgerblue; color: white;">Show Position In Map</div>
-      <!--Google map-->
-      <div id="map_canvas" class="" style="height: 400px">
-      
-      </div>
+  <main role="main" class="inner cover">
+    <h1 class="cover-heading">Cover your page.</h1>
+    <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+    <p class="lead">
+      <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
+    </p>
+  </main>
 
-      <br>
-      <!--Buttons-->
-      <div id="title" style="background-color: dodgerblue; color: white;">Location Cordinate</div>
-	<div id="current"></div>
-      <div class="row text-center">
-        <div class="col-md-6">
-          <a class="btn-floating blue accent-1"><i class="fas fa-map-marker-alt"></i></a>
-          <p>Latitude</p>
-          <p id="platitude">Loading...</p>
-        </div>
-        <div class="col-md-6">
-          <a class="btn-floating blue accent-1"><i class="fas fa-map-marker-alt"></i></a>
-          <p>Longitude</p>
-          <p id="plongitude">Loading...</p>
-        </div>
-       
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
     </div>
-    <!--Grid column-->
-
-  </div>
-
-</section>
-<footer class="navbar-dark bg-dark" style="padding: 10px;" >
-
-           <p  style="text-align: center; font-family: Helvetica; font-size: 18px; color: white;"> Copyright ©2020, All right reserved  by muhammad faiz akmal</p> 
-     
-          
-
-</footer>
+  </footer>
 </div>
-</div>
-
-<!-- section javascript-->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/fontawesome.min.js"></script>
-
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
- 
-
-<!-- Section API geolocatino google maps-->
-
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDMlr8O0woNoJYjqu-nCaJS1qNFNJG0V4A"></script>
-
 </body>
-
-<script type="text/javascript">//****NOTE*****: SEE THIS NOTE REGARDING the 404
-//http://code.google.com/p/geo-location-javascript/issues/detail?id=48
-
-// Copyright 2007, Google Inc.
-//
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are met:
-//
-//  1. Redistributions of source code must retain the above copyright notice,
-//     this list of conditions and the following disclaimer.
-//  2. Redistributions in binary form must reproduce the above copyright notice,
-//     this list of conditions and the following disclaimer in the documentation
-//     and/or other materials provided with the distribution.
-//  3. Neither the name of Google Inc. nor the names of its contributors may be
-//     used to endorse or promote products derived from this software without
-//     specific prior written permission.
-//
-// THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
-// WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
-// EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-// PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
-// OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-// WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-// OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-// Sets up google.gears.*, which is *the only* supported way to access Gears.
-//
-// Circumvent this file at your own risk!
-//
-// In the future, Gears may automatically define google.gears.* without this
-// file. Gears may use these objects to transparently fix bugs and compatibility
-// issues. Applications that use the code below will continue to work seamlessly
-// when that happens.
-
-(function() {
-  // We are already defined. Hooray!
-  if (window.google && google.gears) {
-    return;
-  }
-
-  var factory = null;
-
-  // Firefox
-  if (typeof(GearsFactory)!= 'undefined') {
-    factory = new GearsFactory();
-  } else {
-    // IE
-    try {
-      factory = new ActiveXObject('Gears.Factory');
-      // privateSetGlobalObject is only required and supported on IE Mobile on
-      // WinCE.
-      if (factory.getBuildInfo().indexOf('ie_mobile') != -1) {
-        factory.privateSetGlobalObject(this);
-      }
-    } catch (e) {
-      // Safari
-      if ((typeof(navigator.mimeTypes) != 'undefined')
-           && navigator.mimeTypes["application/x-googlegears"]) {
-        factory = document.createElement("object");
-        factory.style.display = "none";
-        factory.width = 0;
-        factory.height = 0;
-        factory.type = "application/x-googlegears";
-        document.documentElement.appendChild(factory);
-        if(factory && (typeof(factory.create) == 'undefined')) {
-          // If NP_Initialize() returns an error, factory will still be created.
-          // We need to make sure this case doesn't cause Gears to appear to
-          // have been initialized.
-          factory = null;
-        }
-      }
-    }
-  }
-
-  // *Do not* define any objects if Gears is not installed. This mimics the
-  // behavior of Gears defining the objects in the future.
-  if (!factory) {
-    return;
-  }
-
-  // Now set up the objects, being careful not to overwrite anything.
-  //
-  // Note: In Internet Explorer for Windows Mobile, you can't add properties to
-  // the window object. However, global objects are automatically added as
-  // properties of the window object in all browsers.
-  if (!window.google) {
-    google = {};
-  }
-
-  if (!google.gears) {
-    google.gears = {factory: factory};
-  }
-})();
-
-//
-//geo-location-javascript v0.4.8
-//http://code.google.com/p/geo-location-javascript/
-//
-//Copyright (c) 2009 Stan Wiechers
-//Licensed under the MIT licenses.
-//
-//Revision: $Rev: 81 $: 
-//Author: $Author: whoisstan $:
-//Date: $Date: 2012-04-17 17:50:53 -0400 (Tue, 17 Apr 2012) $:    
-//
-var bb_success;
-var bb_error;
-var bb_blackberryTimeout_id=-1;
-
-function handleBlackBerryLocationTimeout()
-{
-    if(bb_blackberryTimeout_id!=-1)
-    {
-        bb_error({message:"Timeout error", code:3});
-    }
-}
-function handleBlackBerryLocation()
-{
-        clearTimeout(bb_blackberryTimeout_id);
-        bb_blackberryTimeout_id=-1;
-        if (bb_success && bb_error)
-        {
-                if(blackberry.location.latitude==0 && blackberry.location.longitude==0)
-                {
-                        //http://dev.w3.org/geo/api/spec-source.html#position_unavailable_error
-                        //POSITION_UNAVAILABLE (numeric value 2)
-                        bb_error({message:"Position unavailable", code:2});
-                }
-                else
-                {  
-                        var timestamp=null;
-                        //only available with 4.6 and later
-                        //http://na.blackberry.com/eng/deliverables/8861/blackberry_location_568404_11.jsp
-                        if (blackberry.location.timestamp)
-                        {
-                                timestamp=new Date(blackberry.location.timestamp);
-                        }
-                        bb_success({timestamp:timestamp, coords: {latitude:blackberry.location.latitude,longitude:blackberry.location.longitude}});
-                }
-                //since blackberry.location.removeLocationUpdate();
-                //is not working as described http://na.blackberry.com/eng/deliverables/8861/blackberry_location_removeLocationUpdate_568409_11.jsp
-                //the callback are set to null to indicate that the job is done
-
-                bb_success = null;
-                bb_error = null;
-        }
-}
-
-var geo_position_js=function() {
-
-        var pub = {};
-        var provider=null;
-        var u="undefined";
-
-        pub.showMap = function(latitude,longitude)
-        {
-            if(typeof(blackberry)!=u)
-            {
-                blackberry.launch.newMap({"latitude":latitude*100000,"longitude":-longitude*100000});
-            }
-            else
-            {
-                window.location="http://maps.google.com/maps?q=loc:"+latitude+","+longitude;
-            }
-        }
-
-
-        pub.getCurrentPosition = function(success,error,opts)
-        {
-                provider.getCurrentPosition(success, error,opts);
-        }
-        
-
-        pub.init = function()
-        {           
-                try
-                {
-                        if (typeof(geo_position_js_simulator)!=u)
-                        {
-                                provider=geo_position_js_simulator;
-                        }
-                        else if (typeof(bondi)!=u && typeof(bondi.geolocation)!=u)
-                        {
-                                provider=bondi.geolocation;
-                        }
-                        else if (typeof(navigator.geolocation)!=u)
-                        {
-                                provider=navigator.geolocation;
-                                pub.getCurrentPosition = function(success, error, opts)
-                                {
-                                        function _success(p)
-                                        {
-                                                //for mozilla geode,it returns the coordinates slightly differently
-                                                if(typeof(p.latitude)!=u)
-                                                {
-                                                        success({timestamp:p.timestamp, coords: {latitude:p.latitude,longitude:p.longitude}});
-                                                }
-                                                else
-                                                {
-                                                        success(p);
-                                                }
-                                        }
-                                        provider.getCurrentPosition(_success,error,opts);
-                                }
-                        }
-                        else if(typeof(window.blackberry)!=u && blackberry.location.GPSSupported)
-                        {
-
-                                // set to autonomous mode
-                                if(typeof(blackberry.location.setAidMode)==u)
-                                {
-                                    return false;                                   
-                                }
-                                blackberry.location.setAidMode(2);
-                                //override default method implementation
-                                pub.getCurrentPosition = function(success,error,opts)
-                                {
-                                        //alert(parseFloat(navigator.appVersion));
-                                        //passing over callbacks as parameter didn't work consistently
-                                        //in the onLocationUpdate method, thats why they have to be set
-                                        //outside
-                                        bb_success=success;
-                                        bb_error=error;
-                                        //function needs to be a string according to
-                                        //http://www.tonybunce.com/2008/05/08/Blackberry-Browser-Amp-GPS.aspx
-                                        if(opts['timeout'])  
-                                        {
-                                            bb_blackberryTimeout_id=setTimeout("handleBlackBerryLocationTimeout()",opts['timeout']);
-                                        }
-                                        else
-                                        //default timeout when none is given to prevent a hanging script
-                                        {
-                                            bb_blackberryTimeout_id=setTimeout("handleBlackBerryLocationTimeout()",60000);
-                                        }                                       
-                                        blackberry.location.onLocationUpdate("handleBlackBerryLocation()");
-                                        blackberry.location.refreshLocation();
-                                }
-                                provider=blackberry.location;               
-                        }
-                        else if(typeof(window.google)!="undefined" && typeof(google.gears)!="undefined")
-                        {
-                                provider=google.gears.factory.create('beta.geolocation');
-                                pub.getCurrentPosition = function(successCallback, errorCallback, options)
-                                {
-                                        function _successCallback(p)
-                                        {
-                                                if(typeof(p.latitude)!="undefined")
-                                                {
-                                                        successCallback({timestamp:p.timestamp, coords: {latitude:p.latitude,longitude:p.longitude}});
-                                                }
-                                                else
-                                                {
-                                                        successCallback(p);
-                                                }
-                                        }
-                                        provider.getCurrentPosition(_successCallback,errorCallback,options);
-                                }
-
-                        }
-                        else if ( typeof(Mojo) !=u && typeof(Mojo.Service.Request)!="Mojo.Service.Request")
-                        {
-                                provider=true;
-                                pub.getCurrentPosition = function(success, error, opts)
-                                {
-
-                                parameters={};
-                                if(opts)
-                                {
-                                         //http://developer.palm.com/index.php?option=com_content&view=article&id=1673#GPS-getCurrentPosition
-                                         if (opts.enableHighAccuracy && opts.enableHighAccuracy==true)
-                                         {
-                                                parameters.accuracy=1;
-                                         }
-                                         if (opts.maximumAge)
-                                         {
-                                                parameters.maximumAge=opts.maximumAge;
-                                         }
-                                         if (opts.responseTime)
-                                         {
-                                                if(opts.responseTime<5)
-                                                {
-                                                        parameters.responseTime=1;
-                                                }
-                                                else if (opts.responseTime<20)
-                                                {
-                                                        parameters.responseTime=2;
-                                                }
-                                                else
-                                                {
-                                                        parameters.timeout=3;
-                                                }
-                                         }
-                                }
-
-
-                                 r=new Mojo.Service.Request('palm://com.palm.location', {
-                                        method:"getCurrentPosition",
-                                            parameters:parameters,
-                                            onSuccess: function(p){success({timestamp:p.timestamp, coords: {latitude:p.latitude, longitude:p.longitude,heading:p.heading}});},
-                                            onFailure: function(e){
-                                                                if (e.errorCode==1)
-                                                                {
-                                                                        error({code:3,message:"Timeout"});
-                                                                }
-                                                                else if (e.errorCode==2)
-                                                                {
-                                                                        error({code:2,message:"Position unavailable"});
-                                                                }
-                                                                else
-                                                                {
-                                                                        error({code:0,message:"Unknown Error: webOS-code"+errorCode});
-                                                                }
-                                                        }
-                                            });
-                                }
-
-                        }
-                        else if (typeof(device)!=u && typeof(device.getServiceObject)!=u)
-                        {
-                                provider=device.getServiceObject("Service.Location", "ILocation");
-
-                                //override default method implementation
-                                pub.getCurrentPosition = function(success, error, opts)
-                                {
-                                        function callback(transId, eventCode, result) {
-                                            if (eventCode == 4)
-                                                {
-                                                error({message:"Position unavailable", code:2});
-                                            }
-                                                else
-                                                {
-                                                        //no timestamp of location given?
-                                                        success({timestamp:null, coords: {latitude:result.ReturnValue.Latitude, longitude:result.ReturnValue.Longitude, altitude:result.ReturnValue.Altitude,heading:result.ReturnValue.Heading}});
-                                                }
-                                        }
-                                        //location criteria
-                                    var criteria = new Object();
-                                criteria.LocationInformationClass = "BasicLocationInformation";
-                                        //make the call
-                                        provider.ILocation.GetLocation(criteria,callback);
-                                }
-                        }
-
-                }
-                catch (e){ 
-                    if(typeof(console)!=u)
-                    {
-                        console.log(e);
-                    }
-                    return false;
-                }
-                return  provider!=null;
-        }
-
-
-        return pub;
-}();</script>
-
- </body>
 </html>
