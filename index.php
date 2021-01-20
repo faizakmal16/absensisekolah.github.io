@@ -49,7 +49,7 @@
     <span class="badge bg-success">Success</span>
     <div class="card text-center">
       <div class="card-header">
-       <?= date('d-m-y'); ?>
+      
       </div>
       <div class="card-body">
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
